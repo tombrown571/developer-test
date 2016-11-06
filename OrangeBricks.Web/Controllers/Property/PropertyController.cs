@@ -84,19 +84,6 @@ namespace OrangeBricks.Web.Controllers.Property
             return View(viewModel);
         }
 
-        [OrangeBricksAuthorize(Roles = "Buyer")]
-        public ActionResult BookViewing(int id)
-        {
-            var builder = new ViewingRequestViewModelBuilder(_context);
-
-            var buyerName = User.Identity.Name;
-            // ToDo, get name/email of Seller
-            var sellerName = "Seller";
-
-            var viewModel = builder.Build(id, buyerName, sellerName);
-
-            return View(viewModel);
-        }
 
         [HttpPost]
         [OrangeBricksAuthorize(Roles = "Buyer")]
