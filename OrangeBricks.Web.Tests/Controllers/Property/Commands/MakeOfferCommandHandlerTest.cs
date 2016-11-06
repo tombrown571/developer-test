@@ -20,7 +20,7 @@ namespace OrangeBricks.Web.Tests.Controllers.Property.Commands
         private IOrangeBricksContext _context;
         private IDbSet<Models.Property> _mockProperties;
         private int _offerPropertyId = 382;
-
+        private string _buyerId = "buyer1";
         [SetUp]
         public void Setup()
         {
@@ -39,8 +39,11 @@ namespace OrangeBricks.Web.Tests.Controllers.Property.Commands
         public void HandleShouldAddOffer()
         {
             // Arrange
-            var command = new MakeOfferCommand();
-            command.PropertyId = _offerPropertyId;
+            var command = new MakeOfferCommand()
+            {
+                PropertyId = _offerPropertyId,
+                BuyerId = _buyerId
+            };
 
             //Act
             _handler.Handle(command);
@@ -56,11 +59,28 @@ namespace OrangeBricks.Web.Tests.Controllers.Property.Commands
         {
             // Arrange
             int invalidPropertyId = 8920;
-            var command = new MakeOfferCommand() { PropertyId = invalidPropertyId};
+            var command = new MakeOfferCommand()
+            {
+                PropertyId = invalidPropertyId,
+                BuyerId = _buyerId
+            };
             
             // Act
             _handler.Handle(command);
             
+        }
+
+        [Test]
+        [ExpectedException(typeof(System.ArgumentNullException))]
+        public void HandleShouldValidateOfferNullBuyerIdThrowsException()
+        {
+            var command = new MakeOfferCommand()
+            {
+                PropertyId = _offerPropertyId,
+                BuyerId = null
+            };
+
+            _handler.Handle(command);
         }
     }
 }

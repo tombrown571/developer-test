@@ -15,14 +15,20 @@ namespace OrangeBricks.Web.Controllers.Property.Commands
 
         public void Handle(MakeOfferCommand command)
         {
-            var property = _context.Properties.Find(command.PropertyId);
+            if (string.IsNullOrWhiteSpace(command.BuyerId))
+            {
+                throw new ArgumentNullException(nameof(command.BuyerId));
+            }
 
+            var property = _context.Properties.Find(command.PropertyId);            
+            
             var offer = new Offer
             {
                 Amount = command.Offer,
                 Status = OfferStatus.Pending,
                 CreatedAt = DateTime.Now,
-                UpdatedAt = DateTime.Now
+                UpdatedAt = DateTime.Now,
+                BuyerUserId = command.BuyerId,
             };
 
             if (property.Offers == null)
