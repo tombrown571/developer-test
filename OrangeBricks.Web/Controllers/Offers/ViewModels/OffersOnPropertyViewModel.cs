@@ -21,4 +21,30 @@ namespace OrangeBricks.Web.Controllers.Offers.ViewModels
         public bool IsPending { get; set; }
         public string Status { get; set; }
     }
+
+
+    public class BuyerOffersViewModel
+    {
+        public string BuyerId;
+
+        public bool HasMadeOffers { get; set; }
+
+        public IEnumerable<BuyerOfferOnPropertyViewModel> BuyerOffers { get; set; }
+    }
+
+    public class BuyerOfferOnPropertyViewModel
+    {
+        public int PropertyId { get; set; }
+        public string PropertyType { get; set; }
+        public int NumberOfBedrooms { get; set; }
+        public string StreetName { get; set; }
+
+        public int Amount { get; set; }
+
+        public string Status { get; set; }
+
+        public DateTime CreatedAt { get; set; }
+
+
+    }
 }

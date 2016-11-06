@@ -41,5 +41,6 @@ namespace OrangeBricks.Web.Controllers.Offers.Builders
                 NumberOfBedrooms = property.NumberOfBedrooms
             };
         }
+
     }
 }
