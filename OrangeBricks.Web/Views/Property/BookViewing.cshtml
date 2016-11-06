@@ -1,0 +1,33 @@
+﻿@model OrangeBricks.Web.Controllers.Viewing.ViewModels.CreateViewingRequestViewModel
+
+@{
+    ViewBag.Title = "Book Viewing";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<style>
+    div.largebox {
+        width: 400px; height: 250px;
+    }
+    div.innerbox {
+        width: 400px;
+        height: 240px;
+    }
+</style>
+
+@using (Html.BeginForm("BookViewing", "Property", FormMethod.Post,  new {@class = "form-horizontal", role = "form"}))
+{
+    @Html.AntiForgeryToken()
+    <hr/>
+    @Html.ValidationSummary("", new {@class = "text-danger"})
+    <div class="form-group">
+        @Html.LabelFor(m=>m.BookViewingRequestMessage, new { @class = "col-md-2 control-label" })
+        <div class="largebox">
+            @Html.EditorFor(m=>m.BookViewingRequestMessage, new { @class = "innerbox multi-line"} )
+        </div>
+
+    </div>
+
+}

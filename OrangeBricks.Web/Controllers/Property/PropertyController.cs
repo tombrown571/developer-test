@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Linq;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
@@ -6,6 +7,8 @@ using OrangeBricks.Web.Attributes;
 using OrangeBricks.Web.Controllers.Property.Builders;
 using OrangeBricks.Web.Controllers.Property.Commands;
 using OrangeBricks.Web.Controllers.Property.ViewModels;
+using OrangeBricks.Web.Controllers.Viewing.Builders;
+using OrangeBricks.Web.Controllers.Viewing.ViewModels;
 using OrangeBricks.Web.Models;
 
 namespace OrangeBricks.Web.Controllers.Property
@@ -78,6 +81,20 @@ namespace OrangeBricks.Web.Controllers.Property
         {
             var builder = new MakeOfferViewModelBuilder(_context);
             var viewModel = builder.Build(id);
+            return View(viewModel);
+        }
+
+        [OrangeBricksAuthorize(Roles = "Buyer")]
+        public ActionResult BookViewing(int id)
+        {
+            var builder = new ViewingRequestViewModelBuilder(_context);
+
+            var buyerName = User.Identity.Name;
+            // ToDo, get name/email of Seller
+            var sellerName = "Seller";
+
+            var viewModel = builder.Build(id, buyerName, sellerName);
+
             return View(viewModel);
         }
 
