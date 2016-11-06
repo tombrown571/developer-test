@@ -233,6 +233,10 @@
     <Compile Include="Migrations\201611061007542_AddBuyerIdToOffer.Designer.cs">
       <DependentUpon>201611061007542_AddBuyerIdToOffer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611061214402_OfferPropertyIdLookup.cs" />
+    <Compile Include="Migrations\201611061214402_OfferPropertyIdLookup.Designer.cs">
+      <DependentUpon>201611061214402_OfferPropertyIdLookup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -332,6 +336,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611061007542_AddBuyerIdToOffer.resx">
       <DependentUpon>201611061007542_AddBuyerIdToOffer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611061214402_OfferPropertyIdLookup.resx">
+      <DependentUpon>201611061214402_OfferPropertyIdLookup.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

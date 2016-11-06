@@ -19,8 +19,8 @@ namespace OrangeBricks.Web.Models
 
         public string BuyerUserId { get; set; }
 
-        //[ForeignKey("Property")]
-        //public int Property_Id { get; set; }
-        //public virtual  Property Property { get; set; }
+        [ForeignKey("Property")]
+        public int Property_Id { get; set; }
+        public virtual Property Property { get; set; }
     }
 }

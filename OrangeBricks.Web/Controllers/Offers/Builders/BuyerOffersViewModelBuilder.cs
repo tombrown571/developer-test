@@ -29,11 +29,15 @@ namespace OrangeBricks.Web.Controllers.Offers.Builders
             {
                 BuyerId = buyerId,
                 HasMadeOffers = hasOffers,
-                BuyerOffers = offers.Select(x=> new BuyerOfferOnPropertyViewModel
+                BuyerOffers = offers.Select(x => new BuyerOfferOnPropertyViewModel
                 {
                     Amount = x.Amount,
                     CreatedAt = x.CreatedAt,
-                    Status = x.Status.ToString(),                   
+                    Status = x.Status.ToString(),
+                    PropertyId = x.Property_Id,
+                    NumberOfBedrooms = x.Property.NumberOfBedrooms,
+                    PropertyType = x.Property.PropertyType,
+                    StreetName = x.Property.StreetName
                 })
             };
         }
